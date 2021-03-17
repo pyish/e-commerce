@@ -15,7 +15,11 @@ https://shishaa.pythonanywhere.com/
 # fashion_web
 
 **fashion_web** is a E-commerce system written in Python 3 and using Django framework.
-The application allows users add to cart products and checkout. It allows admins to add different Categories and products in the backend. 
+The application has the following functionalities.
+1. Register new users.
+2. Log in registered users.
+3. Logged in users can add to cart products and checkout
+4. Admin is able to add Products.
 
 
 ## Getting Started
@@ -29,21 +33,61 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 You will find hereafter what I use to develop and to run the project
-* Python 3.7
-* Django 3.1
+* Python 3.9
+* Django 3.1.7
 * pipenv (not mandatory but highly recommended)
 
-### Installing
-Get a local copy of the project directory by cloning "fashion_web" from github. `git clone https://github.com/BabGee/fashion_web.git` 
-I use pipenv for developing this project so I recommend you to create a virtual environment and activate it, `pipenv shell`  and to install the requirements `pip install -r requirements.txt`.
+
+### Installation
+
+Get a local copy of the project directory by cloning "opportunity-management" from github.
+
+```bash
+git clone https://github.com/BabGee/fashion_web.git
+```
+
+cd into the folder
+
+```bash
+cd fashion_web
+```
+
+I use pipenv for developing this project so I recommend you to create a virtual environment and activate it.
+
+```bash
+python3 -m pipenv shell
+```
+
+Install the requirements
+
+```bash
+python3 -m pip install -r requirements.txt
+```
 
 Then follow these steps:
-1. Move to root folder `cd django_angular`
-2. Create a `.env` file in the root folder, provide the required database information  to the `.env` file (.env.example file is provided to help set this information)
-3. Create the tables with the django command line `python manage.py makemigrations` then `python manage.py migrate`
-4. Create your admin log in credentials to add Products in the backend `python manage.py createsuperuser`
-5. Finally, run the django server `python manage.py runserver `
+1. Move to root folder 
 
+```bash
+cd django_angular
+```
+2. Create a `.env` file in the root folder, provide the required database information  to the `.env` file (.env.example file is provided to help set this information)
+
+3. Create the tables with the django command line
+
+```bash
+python manage.py makemigrations
+```
+then migrate the changes
+ 
+```bash
+python manage.py migrate
+```
+
+4. Finally, run the django server
+
+```bash
+python manage.py runserver
+```
 
 ## Built With
 
@@ -58,7 +102,3 @@ I use exclusively Github
 
 This is an open source project not under any particular license.
 However framework, packages and libraries used are on their own licenses. Be aware of this if you intend to use part of this project for your own project.
-
-
-
-
