@@ -18,7 +18,7 @@ https://shishaa.pythonanywhere.com/
 The application has the following functionalities.
 1. Register new users.
 2. Log in registered users.
-3. Logged in users can add to cart products and checkout
+3. Logged in users can order products and checkout
 4. Admin is able to add Products.
 
 
@@ -33,9 +33,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 You will find hereafter what I use to develop and to run the project
-* Python 3.9
-* Django 3.1.7
-* pipenv (not mandatory but highly recommended)
+* Python 3
+* Django 4.0.2
+* pipenv (not mandatory but highly recommended).  Instructions on how to get pipenv [here](https://pypi.org/project/pipenv/)
 
 
 ### Installation
@@ -72,7 +72,7 @@ cd django_angular
 ```
 2. Create a `.env` file in the root folder, provide the required database information  to the `.env` file (.env.example file is provided to help set this information)
 
-3. Create the tables with the django command line
+3. Create the tables with the django command 
 
 ```bash
 python manage.py makemigrations
@@ -83,11 +83,20 @@ then migrate the changes
 python manage.py migrate
 ```
 
+Create an admin using command below and enter your preferred username, email and password.(You will use this to login django admin and create products etc)
+ 
+```bash
+python3 manage.py createsuperuser
+```
+
 4. Finally, run the django server
 
 ```bash
 python manage.py runserver
 ```
+
+
+5. Access the django admin by adding ' /admin' to the url and login to create products.
 
 ## Built With
 
