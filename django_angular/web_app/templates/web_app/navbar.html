@@ -41,8 +41,9 @@
                 <ul>
                     <li><a class="active" href="{% url 'fashion-home' %}">Home</a></li>
                     <li><a href="#">Shop</a>
+                        <li><a href="#">E-content</a>
                         <ul class="sub-menu">
-                            <li><a href="{% url 'fashion-offers' %}">Offer Products</a></li>   
+                            <li><a href="{% url 'fashion-offers' %}"> Products on offer</a></li>   
                         </ul>
                     </li>
                     {% if user.is_authenticated %}
