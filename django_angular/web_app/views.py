@@ -65,6 +65,13 @@ def offer_product(request):
         'offer_count' : all_products.filter(rating=1).count()
     }
     return render(request, 'web_app/offer_products.html', context)
+
+
+def digital_content(request):
+    context = {
+        
+    }
+    return render(request, 'web_app/digital_content.html', context)    
  
 
 class SearchResultsView(View):

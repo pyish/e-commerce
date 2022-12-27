@@ -41,7 +41,7 @@
                 <ul>
                     <li><a class="active" href="{% url 'fashion-home' %}">HOME</a></li>
                     <li><a href="#">SHOP</a>
-                        <li><a href="https://eaglelearning.netlify.app/">DIGITAL CONTENT</a>
+                        <li><a class="active" href="{% url 'digital-content' %}">DIGITAL CONTENT</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li><a href="#">{{user.username}} Account</a>
