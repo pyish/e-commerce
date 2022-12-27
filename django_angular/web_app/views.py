@@ -71,7 +71,7 @@ def digital_content(request):
     context = {
         
     }
-    return render(request, 'web_app/digital_content.html', context)    
+    return render(request, 'web_app/course/index.html', context)    
  
 
 class SearchResultsView(View):
