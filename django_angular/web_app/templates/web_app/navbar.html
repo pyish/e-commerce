@@ -1,5 +1,8 @@
 {% load static %}
 
+
+{% load cart_template_tags %}
+
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="imageBox">
         <div class="imageInn">
@@ -13,11 +16,32 @@
           <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon bg-light"></span>
           </button>
+
           <div class="collapse navbar-collapse justify-content-end" id="nav">
             <ul class="navbar-nav">
               <li class="item current"><a class="link" href="{% url 'eagle-home' %}">HOME</a></li>
               <li class="item"><a class="link" href="{% url 'eagle-digitalcontent' %}">COURSES</a></li>
-              <li class="item"><a class="link" href="{% url 'eagle-contact' %}">CONTACT</a></li>
+              <li class="item"><a class="link" href="#">CONTACT</a></li>
+                <a href="{% url 'order-summary' %}">
+                    <img src="{% static 'web_app/img/icons/bag.png' %}" alt="">
+                    <span>{{ request.user|cart_product_count }}</span>
+                </a>
+                {% if not user.is_authenticated %}
+                <li class="item"><a class="link" href="{% url 'fashion-register' %}">Register</a></li>
+                <li class="item"><a class="link" href="{% url 'login' %}">Login</a></li>
+                {% else %}
+                 <li class="item"><a class="link" href="{% url 'logout' %}">Logout</a></li>
+                 {% endif %}
+
+                 {% if user.is_authenticated %}
+                 <li class="item"><a class="link" href="#">{{user.username}} Account</a></li>
+                 <li class="item"><a class="link" href="{% url 'order-summary' %}">Orders</a></li>
+                  {% endif %}
+
             </ul>
-          </div>
+          </div>      
+
+
+
+
     </nav>
