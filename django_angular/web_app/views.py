@@ -24,7 +24,7 @@ def create_ref_code():
 
 def index(request):
     context = {
-        'categories': all_categories,
+        'categories': all_categories.filter(rating=0),
         'products': all_products.filter(rating=0),
         'offer_products': all_products.filter(rating=1),
     }
@@ -69,7 +69,9 @@ def offer_product(request):
 
 def digital_content(request):
     context = {
-        
+        'categories': all_categories.filter(rating=1),
+        'products': all_products.filter(rating=1),
+        'offer_products': all_products.filter(rating=1),
     }
     return render(request, 'web_app/course/index.html', context)    
  

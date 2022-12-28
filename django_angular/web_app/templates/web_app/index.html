@@ -1,97 +1,106 @@
+{% extends 'web_app/base.html' %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="{% static 'web_app/assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'web_app/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'web_app/css/footer.css' %}">
-    <link rel="icon" href="{% static 'web_app/image/top1.png' %}" type="image/x-icon">
-    <script src="{% static 'web_app/javascript/javascript.js' %}"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-    <title>To The Top EDUCATION</title>
-</head>
-<body>
-    
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-      <div class="imageBox">
-        <div class="imageInn">
-          <a href="{% url 'eagle-home' %}"><img src="{% static 'web_app/image/top.png' %}" style="margin-left: 1rem;" class="logo"></a>
-        </div>
-        <div class="hoverImg">
-          <a href="{% url 'eagle-home' %}"><img src="{% static 'web_app/image/Pin-on-Gifs.gif' %}" width="100px" height="100px" style="margin-left: 1rem;"></a>
-        </div>
-      </div>
-          
-          <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon bg-light"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="nav">
-            <ul class="navbar-nav">
-              <li class="item current"><a class="link" href="{% url 'eagle-home' %}">HOME</a></li>
-              <li class="item"><a class="link" href="{% url 'eagle-digitalcontent' %}">COURSES</a></li>
-              <li class="item"><a class="link" href="{% url 'eagle-contact' %}">CONTACT</a></li>
-            </ul>
-          </div>
-    </nav>
-    <main>
+{% load humanize %}
+
+{% block title %} Products | Home {% endblock %}
+
+{% block content %}
+
+     
+    <main >
   
-          <div class="container main">
-            
-          </div>
-            
+      <div class="container">
+        <h1 style="text-align: center;">CATEGORIES</h1>
+        <section class="card-area">
+
+        <!-- Card: IT -->
+        {% for category in categories %}
+        <section class="card-section">
+            <div class="card">
+                <div class="flip-card">
+                    <div class="flip-card__container">
+                        <div class="card-front">
+                            <div class="card-front__tp card-front__tp--IT">
+                                <img src="{{category.image.url}}" width="150%" alt="">
+                            </div>
+
+                            <div class="card-front__bt">
+                                <p class="card-front__text-view card-front__text-view--IT">
+                                    {{category.name}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <video class="video__container" autoplay muted loop>
+                                <source class="video__media" src="{{category.video_file.url}}" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inside-page">
+                    <div class="inside-page__container">
+                        <h3 class="inside-page__heading inside-page__heading--IT">
+                            {{category.name}}
+                        </h3>
+                        <p class="inside-page__text">
+                          {{category.description|truncatechars:19 }}
+                        </p>
+                        <a href="#" class="inside-page__btn inside-page__btn--IT">View deals</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+
+    </section>
+
+       <hr>
+
+    <section class="">
+      <input type="radio" id="All" name="categories" value="All" checked="">
+<input type="radio" id="IT" name="categories" value="IT">
+<input type="radio" id="MUSIC" name="categories" value="MUSIC">
+<input type="radio" id="LANGUAGES" name="categories" value="LANGUAGES">
+<input type="radio" id="HISTORY" name="categories" value="HISTORY">
+
+<ol class="filters">
+  <li>
+    <label for="All">All</label>
+  </li>
+  {% for category in categories %}
+  <li>
+    <label for="{{category.label}}">{{category.name}}</label>
+  </li>
+  {% endfor %}
+</ol>
+
+<ol class="posts">
+  {% for product in products %}
+  <li class="post" data-category="{{product.category.label}}">
+    <article>
+      <figure>
+        <a href="#">
+          <img src="{{ product.image.url }}" width="100%" alt="">
+        </a>
+        <figcaption>
+          <ol class="post-categories">
+            <li>
+              <a href="">{{ product.title }}</a>
+            </li>
+          </ol>
+           <a href="{{ product.get_add_to_cart_url }}" class="btn btn-success">ADD TO CART</a>
+        </figcaption>
+      </figure>
+    </article>
+  </li>
+  {% endfor %}
+</ol>
+    </section>
+      </div>
+        
     </main>
-</body>
-    <footer class="footer-distributed">
 
-            <div class="footer-left">
-              <a href="index.html"><img src="{% static 'web_app/image/top.png' %}" style="margin-left: 1rem;"></a>
-    
-                <p class="footer-links">
-                    <a href="{% url 'eagle-home' %}">HOME</a>
-                    |
-                    <a href="{% url 'eagle-digitalcontent' %}">COURSES</a>
-                    |
-                    <a href="{% url 'eagle-contact' %}">CONTACT</a>
-                </p>
-    
-                <p class="footer-company-name">Copyright © 2022 <strong>eaglegroup</strong> All rights reserved</p>
-            </div>
-    
-            <div class="footer-center">
-                <div class="center-link">
-                    <a href="#"><i class="fa fa-map-marker"></i></a>
-                    <p><span>Nairobi</span>
-                        Kenya</p>
-                </div>
-    
-                <div class="center-link">
-                    <a href="tel:+2540712345678"><i class="fa fa-phone"></i></a>
-                    <p>(+254) 0712345678 </p>
-                </div>
-                <div class="center-link">
-                    <a href="mailto:eaglegroup@gmail.com"><i class="fa fa-envelope"></i></a>
-                    <p><a href="mailto:eaglegroup@gmail.com">toeaglegroup@gmail.com</a></p>
-                </div>
-            </div>
-            <div class="footer-right">
-                <p class="footer-company-about">
-                    <span>About the company</span>
-                    <strong>Eagle Group International (K) Ltd</strong> was incorporated in Kenya the year 2016 to enable the company to undertake all investment opportunities in Kenya, Africa and globally as an Infrastructure solution company. Our solutions include ICT infrastructures, energy Infrastructure, physical and structural Infrastructure. Eagle group bought and took over some of the activities of Bear (K) Limited.
-                </p>
-                <div class="footer-icons">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-github"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-youtube"></i></a>
-                </div>
-            </div>
-        </footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-</html>
+    {% endblock %}

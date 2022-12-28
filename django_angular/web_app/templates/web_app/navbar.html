@@ -1,0 +1,23 @@
+{% load static %}
+
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+      <div class="imageBox">
+        <div class="imageInn">
+          <a href="{% url 'eagle-home' %}"><img src="{% static 'web_app/image/top.png' %}" style="margin-left: 1rem;" class="logo"></a>
+        </div>
+        <div class="hoverImg">
+          <a href="{% url 'eagle-home' %}"><img src="{% static 'web_app/image/Pin-on-Gifs.gif' %}" width="100px" height="100px" style="margin-left: 1rem;"></a>
+        </div>
+      </div>
+          
+          <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon bg-light"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="nav">
+            <ul class="navbar-nav">
+              <li class="item current"><a class="link" href="{% url 'eagle-home' %}">HOME</a></li>
+              <li class="item"><a class="link" href="{% url 'eagle-digitalcontent' %}">COURSES</a></li>
+              <li class="item"><a class="link" href="{% url 'eagle-contact' %}">CONTACT</a></li>
+            </ul>
+          </div>
+    </nav>

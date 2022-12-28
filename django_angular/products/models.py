@@ -6,7 +6,12 @@ from django.shortcuts import reverse
 RATING = ((0, 'Physical Product'), (1, 'Digital Product'))
 
 class Category(models.Model):
+    image = models.ImageField(default='fashion.jpg', upload_to='product_pics')
     name = models.CharField(max_length=50)
+    description = models.CharField(max_length=200, null=True, blank=True)
+    video_file = models.FileField(upload_to='product_files',blank=True,null=True)
+    label = models.CharField(max_length=20, null=True, blank=True)
+    rating = models.IntegerField(choices=RATING, default=0)
 
     def __str__(self):
         return self.name
@@ -21,7 +26,6 @@ class Product(models.Model):
     discount_price = models.IntegerField(blank=True, null=True)
     rating = models.IntegerField(choices=RATING, default=0)
     created_on = models.DateTimeField(auto_now_add=True)
-    video_file = models.FileField(upload_to='product_files',blank=True,null=True)
     class Meta:
         ordering = ['-created_on']
 
