@@ -1,11 +1,13 @@
-{% extends "web_app/base.html" %}
+{% extends 'web_app/base.html' %}
+
+{% load static %}
 
 {% load humanize %}
 
-{% block title %} Fashion | Mpesa Code  {% endblock %}
-
+{% block title %} Checkout {% endblock %}
 
 {% block content %}
+
 
 <div class="container-fluid">
     <!-- Begin Page Content -->
@@ -29,7 +31,7 @@
                     </div>
                   </form>
                   <div class="border-bottom pt-3">
-                    <small class="text-muted">Continue Shopping <a href="{% url 'fashion-home' %}">Home</a></small>
+                    <small class="text-muted">Continue Shopping <a href="{% url 'eagle-home' %}">Home</a></small>
                   </div>
                 </div>
               </div>
@@ -39,6 +41,4 @@
       </div>
 </div>
 
-
-{% endblock %}
-
+    {% endblock %}

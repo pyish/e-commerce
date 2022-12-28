@@ -1,0 +1,108 @@
+{% extends 'web_app/base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block title %} Courses | Home {% endblock %}
+
+{% block content %}
+
+
+    <main >
+  
+       <div class="container">
+        <h1 style="text-align: center;">COURSES</h1>
+        <section class="card-area">
+
+        <!-- Card: IT -->
+        {% for category in categories %}
+        <section class="card-section">
+            <div class="card">
+                <div class="flip-card">
+                    <div class="flip-card__container">
+                        <div class="card-front">
+                            <div class="card-front__tp card-front__tp--IT">
+                                <img src="{{category.image.url}}" width="150%" alt="">
+                            </div>
+
+                            <div class="card-front__bt">
+                                <p class="card-front__text-view card-front__text-view--IT">
+                                    {{category.name}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <video class="video__container" autoplay muted loop>
+                                <source class="video__media" src="{{category.video_file.url}}" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inside-page">
+                    <div class="inside-page__container">
+                        <h3 class="inside-page__heading inside-page__heading--IT">
+                            {{category.name}}
+                        </h3>
+                        <p class="inside-page__text">
+                          {{category.description|truncatechars:19 }}
+                        </p>
+                        <a href="#" class="inside-page__btn inside-page__btn--IT">View deals</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+
+    </section>
+
+       <hr>
+
+    <section class="">
+      <input type="radio" id="All" name="categories" value="All" checked="">
+<input type="radio" id="IT" name="categories" value="IT">
+<input type="radio" id="MUSIC" name="categories" value="MUSIC">
+<input type="radio" id="LANGUAGES" name="categories" value="LANGUAGES">
+<input type="radio" id="HISTORY" name="categories" value="HISTORY">
+
+<ol class="filters">
+  <li>
+    <label for="*">All</label>
+  </li>
+  {% for category in categories %}
+  <li>
+    <label for="{{category.label}}">{{category.name}}</label>
+  </li>
+  {% endfor %}
+</ol>
+
+<ol class="posts">
+  {% for product in products %}
+  <li class="post" data-category="{{product.category.label}}">
+    <article>
+      <figure>
+        <a href="#">
+          <img src="{{ product.image.url }}" width="100%" alt="">
+        </a>
+        <figcaption>
+          <ol class="post-categories">
+            <li>
+              <a href="">{{ product.title }}</a>
+            </li>
+          </ol>
+           <a href="{{ product.get_add_to_cart_url }}" class="btn btn-success">ADD TO CART</a>
+        </figcaption>
+      </figure>
+    </article>
+  </li>
+  {% endfor %}
+</ol>
+    </section>
+      </div>
+            
+    </main>
+
+
+
+    {% endblock %}

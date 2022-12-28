@@ -2,17 +2,19 @@
 
 {% load static %}
 
+{% load humanize %}
+
 {% block title %} Checkout {% endblock %}
 
 {% block content %}
 
 <main >
-    <div class="container wow fadeIn">
-      <h2 class="my-5 h2 text-center">Checkout form</h2>
-      <div class="row">
-        <div class="col-md-8 mb-4">
-          <div class="card">
-            <form class="card-body" method="POST" action="{% url 'payment' %}">
+     <div class="container">
+
+    <div class="table-responsive text-nowrap">
+    <h2>Order Summary</h2>
+
+            <form class="col-md-4 mb-4" method="POST" action="{% url 'payment' %}">
               {% csrf_token %}
 
               <h3>Delivery Details</h3>
@@ -77,8 +79,11 @@
               <hr class="mb-4">
               <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
             </form>
-          </div>
-        </div>
+
+     </div>
+     </div>       
+ 
+
 
         <div class="col-md-4 mb-4">
           {% include "web_app/order_snippet.html" %}
@@ -89,32 +94,5 @@
     </div>
 </main>
 
-{% endblock %}
 
-
-{% block extra_scripts %}
-<script>
-var hideable_delivery_form = $('.hideable_delivery_form');
-var hideable_billing_form = $('.hideable_billing_form');
-
-var use_default_delivery = document.querySelector("input[name=use_default_delivery]");
-var use_default_billing = document.querySelector("input[name=use_default_billing]");
-
-use_default_delivery.addEventListener('change', function() {
-  if (this.checked) {
-    hideable_delivery_form.hide();
-  } else {
-    hideable_delivery_form.show();
-  }
-})
-
-use_default_billing.addEventListener('change', function() {
-  if (this.checked) {
-    hideable_billing_form.hide();
-  } else {
-    hideable_billing_form.show();
-  }
-})
-
-</script>
-{% endblock extra_scripts %}
+    {% endblock %}
