@@ -273,10 +273,10 @@ class CheckoutView(View):
                 payment_option = form.cleaned_data.get('payment_option')
 
                 if payment_option == 'M':
-                    return redirect(reverse('fashion-home'))
+                    return redirect(reverse('eagle-home'))
                     #return redirect('payment', payment_option='Mpesa')
-                elif payment_option == 'P':
-                    print('Hey')
+                elif payment_option == 'W':
+                    return redirect(reverse('eagle-home'))
                     #self.request.session['order_id'] = order.id
                     #return redirect(reverse('payment:process'))
                     #messages.add_message(self.request, messages.INFO, 'Order Placed!')
@@ -308,7 +308,7 @@ def mpesa_code_view(request):
         
         mpesa_code = form.cleaned_data.get('code')
         messages.info(request, f'Mpesa Code {mpesa_code} sent. You will be contacted shortly')
-        return redirect('fashion-home')
+        return redirect('eagle-home')
     else:
         form = MpesaCodeForm()
 
